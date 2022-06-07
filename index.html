@@ -5,28 +5,32 @@
     <meta name="viewport" content="width=device-width, maximum-scale=1.0,initial-scale=1.0, user-scalable=none" />
     <title>Minesweeper Game</title>
   </head>
-  <body class="w-full h-100vh overflow-hidden text-white bg-[#808080]">
-    <div id="app" class="relative h-full flex flex-col items-stretch justify-between">
-      <!-- <div class="absolute flex items-center justify-between p-2 z-3 top-0 left-0 right-0 flex-shrink-0 h-16 bg-[#606060] shadow-lg">
-        <h1 class="font-bold">Minesweeper</h1>
-        <label class="inline-flex gap-1 flex-col"> 
-
-          <div class="text-center font-bold text-xs">Zoom</div>
-          <div class="inline-block flex gap-2 font-extrabold pb-2">
-            <i id="zoom-in"    class="block text-center shadow hover:border-[#303030] cursor-pointer border border-[#404040] h-22px w-22px bg-[#505050]">+</i>
-            <i id="zoom-equal" class="block text-center shadow hover:border-[#303030] cursor-pointer border border-[#404040] h-22px w-22px bg-[#505050]">=</i>
-            <i id="zoom-out"   class="block text-center shadow hover:border-[#303030] cursor-pointer border border-[#404040] h-22px w-22px bg-[#505050]">-</i>
-          </div>
-        </label>
-      </div> -->
-      <!-- <div class="overlay z-2"></div> -->
-          <!-- <div class="table-xl bg-[#404040] select-none rounded-lg shadow-lg overflow-auto" id="table"></div> -->
+  <body class="p-4 -depth text-white h-screen flex flex-col">
+    <div class="header depth flex items-center justify-between p-2 z-3 top-0 left-0 right-0 flex-shrink-0 h-16">
+      <!-- <h1 class="font-bold">Minesweeper</h1> -->
+      <div>20</div>
+      <div>20</div>
+      <div id="btn-dark" class="block dark:hidden">Dark</div>
+      <div id="btn-light" class="hidden dark:block">light</div>
+     
     </div>
-    
-    <!-- <div class="absolute bottom-0 left-0 right-0 min-h-30 bg-gradient-to-t from-black to-transparent">footer</div> -->
-
-
-
+    <div class="table-parent h-full pt-2" id="app"></div>
+<!-- grid-cols-10 grid-rows-10  -->
     <script type="module" src="/main.js"></script>
   </body>
 </html>
+
+<!-- 
+
+<body class="w-full h-100vh overflow-hidden text-white bg-[#808080]">
+  <div id="app" class="relative h-full flex flex-col items-stretch justify-between">
+    
+    <div class="overlay z-2"></div>
+        <div class="table-xl bg-[#404040] select-none rounded-lg shadow-lg overflow-auto" id="table"></div>
+  </div>
+  
+  <div class="absolute bottom-0 left-0 right-0 min-h-30 bg-gradient-to-t from-black to-transparent">footer</div>
+
+
+
+</body> -->
