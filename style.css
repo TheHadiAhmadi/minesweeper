@@ -1,108 +1,230 @@
 :root {
-  --top-surface-color: #d0d0d0;
-  --top-surface-dark: #808080;
-  --top-surface-light: #efefef;
-  --tile-hover-color: #e0e0e0;
-  --tile-text-color: #404040;
-  --tile-outline-color: #808080;
-  --tile-revealed-color: #b9b9b9;
-  --tile-hover-revealed-color: #c9c9c9;
-  --tile-hover-border-color: #707070;
+	--top-surface-color: #d0d0d0;
+	--top-surface-dark: #808080;
+	--top-surface-light: #efefef;
+	--tile-hover-color: #e0e0e0;
+	--tile-text-color: #404040;
+	--game-over-text-color: #202020;
+	--tile-outline-color: #808080;
+	--tile-revealed-color: #b9b9b9;
+	--tile-hover-revealed-color: #c9c9c9;
+	--tile-hover-border-color: #707070;
 }
 
 :root .dark {
-  --top-surface-color: #3e3e3e;
-  --top-surface-dark: #242424;
-  --top-surface-light: #666565;
-  --tile-hover-color: #3e3e3e;
-  --tile-text-color: #cccccc;
-  --tile-outline-color: #6a6a6a;
-  --tile-revealed-color: #525252;
-  --tile-hover-revealed-color: #626262;
-  --tile-hover-border-color: #525252;
+	--top-surface-color: #3e3e3e;
+	--top-surface-dark: #242424;
+	--top-surface-light: #666565;
+	--tile-hover-color: #3e3e3e;
+	--tile-text-color: #cccccc;
+	--game-over-text-color: #efefef;
+	--tile-outline-color: #6a6a6a;
+	--tile-revealed-color: #525252;
+	--tile-hover-revealed-color: #626262;
+	--tile-hover-border-color: #525252;
 }
 
 .aspect-1 {
-  aspect-ratio: 1;
+	aspect-ratio: 1;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
+.header {
+  max-width: 500px;
+  width: 100%;
+	margin: 0 auto;
+}
+
+.btn {
+  padding: 8px;
+  color: var(--tile-text-color);
+  font-weight: bold;
+}
 
 .table {
-  max-width: 500px;
-  margin: 0 auto;
-  display: grid;
-  aspect-ratio: 1;  
-  z-index: 1;
+	max-width: 500px;
+	margin: 0 auto;
+	display: grid;
+	aspect-ratio: 1;
+	z-index: 1;
+}
+
+.table-lost {
+	position: relative;
+	opacity: 0.8;
+	pointer-events: none;
+}
+
+.table-won {
+	position: relative;
+	opacity: 0.8;
+	pointer-events: none;
+}
+
+.table-lost::after {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	content: 'Game Over!';
+	height: 100%;
+	width: 100%;
+  font-weight: bold;
+	color: var(--game-over-text-color);
+	font-size: 48px;
+	text-shadow: 0 0 40px var(--game-over-text-color);
+}
+
+.table-won::after {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	content: 'You Won!';
+  font-weight: bold;
+	height: 100%;
+	width: 100%;
+	color: var(--game-over-text-color);
+	font-size: 48px;
+	text-shadow: 0 0 40px var(--game-over-text-color);
 }
 
 .depth {
-  border-left: 4px solid var(--top-surface-dark);
-  border-top: 4px solid var(--top-surface-dark);
-  border-bottom: 4px solid var(--top-surface-light);
-  border-right: 4px solid var(--top-surface-light);
+	border-left: 4px solid var(--top-surface-dark);
+	border-top: 4px solid var(--top-surface-dark);
+	border-bottom: 4px solid var(--top-surface-light);
+	border-right: 4px solid var(--top-surface-light);
 }
 
 .-depth {
-  border-left: 4px solid var(--top-surface-light);
-  border-top: 4px solid var(--top-surface-light);
-  border-bottom: 4px solid var(--top-surface-dark);
-  border-right: 4px solid var(--top-surface-dark);
-  background-color: var(--top-surface-color);
+	border-left: 4px solid var(--top-surface-light);
+	border-top: 4px solid var(--top-surface-light);
+	border-bottom: 4px solid var(--top-surface-dark);
+	border-right: 4px solid var(--top-surface-dark);
+	background-color: var(--top-surface-color);
 }
 
 .tile {
-  color: var(--tile-text-color);
-  display: flex;
-  align-items: center;
-  outline: 1px solid var(--tile-outline-color);
+	color: var(--tile-text-color);
+	display: flex;
+	align-items: center;
+	outline: 1px solid var(--tile-outline-color);
 
-  justify-content: center;
-  transition: all 0.3s ease;
+	justify-content: center;
+	transition: all 0.3s ease;
 }
 
 .tile-revealed {
-  border: 4px solid transparent;
-  outline: 1px solid var(--tile-outline-color);
-  background-color: var(--tile-revealed-color);
+	border: 4px solid transparent;
+	outline: 1px solid var(--tile-outline-color);
+	background-color: var(--tile-revealed-color);
 }
 
-
 .tile:hover {
-  z-index: 1;
-  /* border: 4px solid transparent; */
-  background-color: var(--tile-hover-color);
-  box-shadow: 0 0 1px 1px var(--tile-hover-border-color);
-
+	z-index: 1;
+	/* border: 4px solid transparent; */
+	background-color: var(--tile-hover-color);
+	box-shadow: 0 0 1px 1px var(--tile-hover-border-color);
 }
 
 .tile:not(.tile-revealed):active {
-  transform: scale(0.9);
-  opacity: 0.6;
+	transform: scale(0.9);
+	opacity: 0.6;
 }
 
 .tile-revealed:hover {
-  background-color: var(--tile-hover-revealed-color);
-  box-shadow: 0 0 1px 1px var(--tile-hover-border-color);
+	background-color: var(--tile-hover-revealed-color);
+	box-shadow: 0 0 1px 1px var(--tile-hover-border-color);
 }
 
-.mine {
-  animation: blast 0.4s cubic-bezier(0.53, 0.32, 0, 2.5) forwards;
+.tile div {
+	width: 100%;
+	height: 100%;
+}
+
+
+.tile div.flag {
+  color: rgb(0, 190, 79);
+}
+.dark .tile div.flag {
+  color: rgb(64, 187, 105);
+}
+
+.tile div.number {
+  color: black;
+}
+.dark .tile div.number {
+  color: white;
+}
+
+
+
+.tile div.number-1 {
+  color: rgb(3, 138, 148);
+}
+.dark .tile div.number-1 {
+  color: rgb(64, 173, 187);
+}
+
+.tile div.number-2 {
+  color: rgb(0, 126, 31);
+}
+.dark .tile div.number-2 {
+  color: rgb(73, 194, 79);
+}
+
+.tile div.number-3 {
+  color: rgb(126, 15, 0);
+}
+.dark .tile div.number-3 {
+  color: rgb(224, 86, 67);
+}
+
+.tile div.number-4 {
+  color: rgb(136, 25, 187);
+}
+.dark .tile div.number-4 {
+  color: rgb(201, 86, 191);
+}
+
+
+.tile div.mine {
+  color: rgb(190, 86, 0);
+	animation: blast 0.4s cubic-bezier(0.53, 0.32, 0, 2.5) forwards;
+}
+.dark .tile div.mine {
+  color: rgb(255, 151, 66);
+}
+
+.glow {
+	animation: glow 1s ease backwards infinite;
+}
+
+@keyframes glow {
+	from {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	to {
+		transform: scale(1);
+	}
 }
 
 @keyframes blast {
-  from {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  to {
-    transform: scale(1);
-  }
+	from {
+		transform: scale(0);
+	}
+	50% {
+		transform: scale(1.5);
+	}
+	to {
+		transform: scale(1);
+	}
 }

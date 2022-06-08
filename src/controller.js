@@ -1,7 +1,7 @@
 import { table } from './view';
 import { Game } from './game';
 
-const game = new Game();
+const game = new Game({mineCount: 20});
 
 
 import 'virtual:windi.css';
@@ -13,6 +13,16 @@ const body = document.getElementsByTagName('body')[0];
 
 const BtnLight = document.getElementById('btn-light');
 const BtnDark = document.getElementById('btn-dark');
+
+const BtnReset = document.getElementById('btn-reset');
+
+BtnReset.addEventListener('click', () => {
+	if(BtnReset.classList.contains('glow')) {
+		BtnReset.classList.remove('glow')
+	}
+	game.reset()
+	updateUI()
+})
 
 BtnLight.addEventListener('click', () => {
 	console.log('go to light mode');
@@ -47,7 +57,7 @@ function handleRightClick(tile, i, j) {
 function updateUI() {
 	let data = game.getData();
     console.log({data})
-    data = data.table.map((d, i) => {
+    data.table = data.table.map((d, i) => {
 		return d.map((cell, j) => {
 			return {
 				onClick: () => handleClick(cell, i, j),
@@ -57,7 +67,16 @@ function updateUI() {
 		});
 	});
     tableNode?.remove();
-	tableNode = table(data);
+	tableNode = table(data.table);
+	if(data.isLost) {
+		console.log('isLost')
+		tableNode.classList.add('table-lost');
+		BtnReset.classList.add('glow');
+	}
+	if(data.isWon) {
+		tableNode.classList.add('table-won');
+		BtnReset.classList.add('glow');
+	}
 	app.appendChild(tableNode);
 }
 

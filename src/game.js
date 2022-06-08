@@ -1,10 +1,9 @@
 export function Game(options = {}) {
 	const size = options.size ?? 10;
 	const mineCount = options.mineCount ?? 10;
-	const table = initTable();
+	let table = initTable();
 	let started = false; 
 	let gameLost = false;
-	let gameWon = false;
 
 	function newTile(value) {
 		return {
@@ -65,6 +64,13 @@ export function Game(options = {}) {
 		return table;
 	}
 
+
+	function reset() {
+		table = initTable();
+		started = false;
+		gameLost = false
+	}
+
 	function initMines(x, y) {
 		started = true;
 
@@ -108,10 +114,6 @@ export function Game(options = {}) {
             neighbours(i, j).map(([ii, jj]) => {
                 reveal(ii, jj)
             })
-			// if (i > 0) reveal(i - 1, j);
-			// if (i < size - 1) reveal(i + 1, j);
-			// if (j > 0) reveal(i, j - 1);
-			// if (j < size - 1) reveal(i, j + 1);
 		}
 	}
 
@@ -136,6 +138,7 @@ export function Game(options = {}) {
 			return {table, isWon: isWon(), isLost: isLost()};
 		},
 		open(i, j) {
+			if(gameLost) return;
 			if (!started) initMines(i, j);
 
 			reveal(i, j);
@@ -152,6 +155,7 @@ export function Game(options = {}) {
 			}
 
 			if (!table[i][j].revealed) table[i][j].isFlag = true;
-		}
+		},
+		reset
 	};
 }
